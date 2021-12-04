@@ -5,7 +5,7 @@ from django.http  import HttpResponse,Http404
 
 
 # Create your views here.
-def welcome(request):
+def home(request):
     
    
     return render(request,'home.html')
