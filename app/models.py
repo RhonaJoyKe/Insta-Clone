@@ -11,7 +11,7 @@ class Image(models.Model):
     profile = models.ForeignKey('Profile',on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.image_name
+        return self.name
 class Profile(models.Model):
     profile_photo=models.ImageField(upload_to = 'pictures/')
     bio=models.TextField()
@@ -23,7 +23,7 @@ class Comments(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     comment_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.comment
+        return self.image
 class Likes(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
