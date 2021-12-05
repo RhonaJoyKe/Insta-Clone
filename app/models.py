@@ -1,11 +1,12 @@
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Image(models.Model):
     image = models.ImageField(upload_to = 'pictures/')
-    # image = CloudinaryField('pictures')
+    image = CloudinaryField('pictures')
     image_date = models.DateTimeField(auto_now_add=True ,null=True)
     name = models.CharField(max_length =30)
     caption = models.TextField()

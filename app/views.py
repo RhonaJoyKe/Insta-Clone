@@ -6,6 +6,7 @@ from .models import Image,Profile,Likes,Comments
 from django.http  import HttpResponse,Http404
 
 
+
 # Create your views here.
 def home(request):
     images=Image.objects.all()
