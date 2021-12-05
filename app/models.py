@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Image(models.Model):
     image = models.ImageField(upload_to = 'pictures/')
     # image = CloudinaryField('pictures')
+    image_date = models.DateTimeField(auto_now_add=True ,null=True)
     name = models.CharField(max_length =30)
     caption = models.TextField()
     profile = models.ForeignKey('Profile',on_delete=models.CASCADE)

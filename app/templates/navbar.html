@@ -1,27 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg  bg-light navbar-light">
     <a class="navbar-brand" href="/">Instagram</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            
-           
-            <li class="nav-item dropdown">
-                
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {% for  location in locations %}
-                    <a class="dropdown-item" href="{% url 'get_location' location.id %}">{{location.name}}</a>
-                    {%endfor%} 
-                </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/">Admin</a>
-          </li>
-        </ul>
-        <div class="col-sm-4 col-md-4 navbar-right">
-          <form class="navbar-form" role="search" method="" action="{% url 'search_results' %}" >
+        
+        <div class="col-sm-4 col-md-4 ">
+          <form class="navbar-form" role="search" method="" action="" >
             {% csrf_token %}
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search  By Category" name="name">
@@ -32,32 +18,33 @@
           </form>
         </div>
         <!-- search form end -->
-    </div>
-    <div class="col-sm-6 col-md-6">
-        {% if user.is_authenticated %}
-        <ul>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
-                      <span class="caret"></span>
-                  </a>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a href="{%url 'newsToday'%}">Home</a>
-              </li>
-              <li>
-                <a href="/accounts/password/change">Change Password</a>
-              </li>
-              <li>
-                <a href="/logout">Logout</a>
-              </li>
-            </ul>
+       
+          {% if user.is_authenticated %}
+          <ul>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i>
+                        <span class="caret"></span>
+                    </a>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="">Home</a>
+                </li>
+                <li>
+                  <a href="/accounts/password/change">Change Password</a>
+                </li>
+                <li>
+                  <a href="/logout">Logout</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          {% else %}
+          <li>
+            <a class='btn btn-default' href="/accounts/login">Login</a>
           </li>
-        </ul>
-        {% else %}
-        <li>
-          <a class='btn btn-default' href="/accounts/login">Login</a>
-        </li>
-
-        {% endif %}
-      </div>
+  
+          {% endif %}
+       
+    </div>
+    
 </nav>
