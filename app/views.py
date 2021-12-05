@@ -53,17 +53,12 @@ def update_profile(request):
     profile = Profile.objects.get(user=request.user)
     
     if request.method == 'POST':
-        userform = UserUpdateForm(request.POST,instance=request.user)
-        profileform = ProfileUpdateForm(request.POST,request.FILES,instance=profile)
+        profileform = UpdateProfileForm(request.POST,request.FILES,instance=profile)
         
-        if userform.is_valid and profileform.is_valid:
-            userform.save()
-            new_profile = profileform.save(commit=False)
-            new_profile.user = request.user
-            new_profile.save()
-            return redirect('/accounts/profile')
+        if  profileform.is_valid:
+            profileform.save()
+            
+            return redirect('accounts/profile')
     else:
-        userform = UserUpdateForm(instance=request.user)
-        profileform = ProfileUpdateForm(instance=profile)
-    
-    return render(request,'accounts/profile_edit.html',context={'form1':userform,'form2':profileform})
+        form=UpdateProfileForm()
+    return render(request,'profile/update_profile.html',{'form':form})
