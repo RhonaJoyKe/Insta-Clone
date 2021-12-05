@@ -33,9 +33,9 @@ class Image(models.Model):
 class Profile(models.Model):
     profile_photo=models.ImageField(upload_to = 'pictures/')
     bio=models.TextField()
-    first_name=models.CharField(max_length=20)
-    last_name=models.CharField(max_length=20)
-    user_name=models.CharField(max_length=20)
+    first_name=models.CharField(max_length=20,null=True)
+    last_name=models.CharField(max_length=20,null=True)
+    user_name=models.CharField(max_length=20,null=True)
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     def __str__(self):
         return self.bio
@@ -91,7 +91,7 @@ class AddImageForm(ModelForm):
         fields = ['image','caption','name']
 class UpdateProfileForm(ModelForm):
     class Meta:
-        model = Image
-        fields = ['image','caption','name']
+        model = Profile
+        fields = ['first_name','last_name','user_name','bio','profile_photo']
 
 
