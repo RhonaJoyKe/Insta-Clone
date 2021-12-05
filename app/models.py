@@ -2,6 +2,10 @@ from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.forms import ModelForm
+
+
+
 
 # Create your models here.
 class Image(models.Model):
@@ -10,6 +14,7 @@ class Image(models.Model):
     name = models.CharField(max_length =30)
     caption = models.TextField()
     profile = models.ForeignKey('Profile',on_delete=models.CASCADE)
+    postee
     
     def __str__(self):
         return self.name
@@ -75,4 +80,9 @@ class Likes(models.Model):
      # delete like from database
     def delete_likes(self):
         self.delete()
+
+class AddImageForm(ModelForm):
+    class Meta:
+        model = Image
+        fields = ['due_back']
 
