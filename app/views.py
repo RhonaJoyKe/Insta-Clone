@@ -34,6 +34,7 @@ def profile(request):
     images = Image.objects.filter(user=current_user)
     profile = get_object_or_404(Profile,id = current_user.id)
     return render(request, 'profile.html', {"images": images, "profile": profile})
+@login_required(login_url='/accounts/login/')
 def add_image(request):
     if request.method=='POST':
         current_user=request.user
@@ -47,3 +48,22 @@ def add_image(request):
     else:
             form=AddImageForm()
     return render(request,'add_image.html',{'form':form})
+def update_profile(request):
+  	#Get the profile
+    profile = Profile.objects.get(user=request.user)
+    
+    if request.method == 'POST':
+        userform = UserUpdateForm(request.POST,instance=request.user)
+        profileform = ProfileUpdateForm(request.POST,request.FILES,instance=profile)
+        
+        if userform.is_valid and profileform.is_valid:
+            userform.save()
+            new_profile = profileform.save(commit=False)
+            new_profile.user = request.user
+            new_profile.save()
+            return redirect('/accounts/profile')
+    else:
+        userform = UserUpdateForm(instance=request.user)
+        profileform = ProfileUpdateForm(instance=profile)
+    
+    return render(request,'accounts/profile_edit.html',context={'form1':userform,'form2':profileform})
