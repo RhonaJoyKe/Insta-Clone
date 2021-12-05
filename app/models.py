@@ -54,6 +54,7 @@ class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     comment_date = models.DateTimeField(auto_now_add=True)
+    content=models.CharField(max_length=20)
     
     def __str__(self):
         return self.image
@@ -93,5 +94,10 @@ class UpdateProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['first_name','last_name','user_name','bio','profile_photo']
+class CommentForm(ModelForm):
+    class Meta:
+        model=Comments
+        fields=['content']
+
 
 
