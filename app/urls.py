@@ -8,7 +8,7 @@ urlpatterns=[
   path('', views.home, name='home'),
   path('accounts/profile/', views.profile, name='profile'),
   path('addimage/', views.add_image, name='addimage'),
-  path('updateimage/', views.update_profile, name='updateimage'),
+  path('updateprofile/', views.update_profile, name='updateprofile'),
   
 ]
 if settings.DEBUG:
