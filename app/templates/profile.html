@@ -1,34 +1,21 @@
+{%extends 'base.html'%}
+{% block content %}
+{{block.super}}
 <div class="container-fluid">
     <div class="px-lg-5">
-      <!-- display default password and username -->
+    
       <div class="row">
          
-          <!-- Gallery Photo item start -->
+         
           <div class="col-xl-3 col-lg-4 col-md-12 mb-4">
-            <div class="bg-white rounded shadow-sm"><img src="{{ image.image.url }}" alt=""
+            <div class="bg-white rounded shadow-sm">
+              <img src="https://i.pinimg.com/474x/82/ab/35/82ab3533ee71daf256f23c1ccf20ad6f--avatar-maker.jpg" alt=""
                 class="img-fluid card-img-top">
-              <div class="p-4">
-                <h5 class="headings text-center"> {{ image.image_name }}</h5>
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <div class="text-muted">
-                      <span class="text-white text-capitalize">{{ image.image_caption }}</span>
-                    </div>
-                  </div>
-                  <div>
-                    <small class="text-muted">
-                      <span class="badge rounded-pill bg-dark text-white text-capitalize">{{ image.image_date|date }}</span>
-                    </small>
-                  </div>
-                  <div>
-{% comment %}
-                  <a type="button" href="{% url 'like.image' image.id %}" class="btn btn-primary"><i class="bi bi-heart-fill"></i>  {{image.like_count }} Likes</a> {% endcomment %}
-                </div>
-              </div>
-              </div>
-          </div>
+              
          </div>
-         {% endfor%}
+         
       </div>
       </div>
   </div>
+</div>
+{%endblock%}

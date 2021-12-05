@@ -27,8 +27,10 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
 @login_required(login_url='/accounts/login/')
 def profile(request):
-    current_user=request.user
-    profile=Profile.objects.filter(user_id=current_user)
-    return render(request,'profile.html',{'profile':profile})
+    current_user = request.user
+    images = Image.objects.filter(user_id=current_user.id)
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    return render(request, 'profile.html', {"images": images, "profile": profile})

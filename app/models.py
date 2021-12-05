@@ -15,6 +15,7 @@ class Image(models.Model):
     caption = models.TextField()
     profile = models.ForeignKey('Profile',on_delete=models.CASCADE)
     postee= models.CharField(max_length =30,null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     
     def __str__(self):
         return self.name
