@@ -14,7 +14,7 @@ class Image(models.Model):
     name = models.CharField(max_length =30)
     caption = models.TextField()
     profile = models.ForeignKey('Profile',on_delete=models.CASCADE)
-    postee= models.CharField(max_length =30)
+    postee= models.CharField(max_length =30,null=True)
     
     def __str__(self):
         return self.name
@@ -51,7 +51,7 @@ class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     comment_date = models.DateTimeField(auto_now_add=True)
-    postee= models.CharField(max_length =30)
+    postee= models.CharField(max_length =30,null=True)
     def __str__(self):
         return self.image
     def save_comments(self):
@@ -85,5 +85,5 @@ class Likes(models.Model):
 class AddImageForm(ModelForm):
     class Meta:
         model = Image
-        fields = ['due_back']
+        fields = ['image','postee','caption','name']
 
