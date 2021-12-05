@@ -5,7 +5,6 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Image(models.Model):
-    image = models.ImageField(upload_to = 'pictures/')
     image = CloudinaryField('pictures')
     image_date = models.DateTimeField(auto_now_add=True ,null=True)
     name = models.CharField(max_length =30)
@@ -14,22 +13,34 @@ class Image(models.Model):
     
     def __str__(self):
         return self.name
+    # save image
+    def save_image(self):
+        self.save()
+
+    # delete image
+    def delete_image(self):
+        self.delete()
+
+    # update image caption
+    def update_caption(self, new_caption):
+        self.image_caption = new_caption
+        self.save()
 class Profile(models.Model):
     profile_photo=models.ImageField(upload_to = 'pictures/')
     bio=models.TextField()
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     def __str__(self):
         return self.bio
-    def save_location(self):
+    def save_profile(self):
         self.save()
 
-    # update location
-    def update_location(self, name):
+    # update profile
+    def update_profile(self, name):
         self.name = name
         self.save()
 
-     # delete location from database
-    def delete_location(self):
+     # delete profile from database
+    def delete_profile(self):
         self.delete()
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
