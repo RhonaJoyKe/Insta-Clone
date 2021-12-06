@@ -7,3 +7,16 @@
 .prof-name{
     display: flex;
 }
+#profile{
+    display: flex;
+}
+.dropdown{
+    padding-left: 20rem;
+}
+.dropdown a{
+    text-decoration: none;
+    
+}
+.dropdown-menu{
+    padding-left: 20rem; 
+}
