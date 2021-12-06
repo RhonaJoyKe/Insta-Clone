@@ -10,9 +10,32 @@ from django.contrib import messages
 # Create your views here.
 def home(request):
     images=Image.objects.all()
+    form=CommentForm(request.POST)
+    if form.is_valid():
+        image=self.get_object()
     
    
     return render(request,'index.html',{'images':images})
+def single_image(request,image_id):
+    image=get_object_or_404(Image,id=image_id)
+    comments=Comments.objects.filter(image=image).all()
+    current_user=request.user
+    if request.method =='POST':
+        form = CommentForm(request.POST)
+        
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            
+            comment.image = image
+            comment.save()
+        return redirect('home')
+    else:
+        
+        form = CommentForm()
+    return render(request, 'image.html', {'image': image, 'form':form, 'comments':comments})
+    
+
 
 def search_results(request):
 

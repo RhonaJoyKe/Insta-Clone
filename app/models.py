@@ -31,6 +31,11 @@ class Image(models.Model):
     def update_caption(self, new_caption):
         self.image_caption = new_caption
         self.save()
+    # search images by name
+    @classmethod
+    def search_image(cls, search_term):
+        images = cls.objects.filter(name__icontains=search_term)
+        return images
 class Profile(models.Model):
     profile_photo=models.ImageField(upload_to = 'pictures/')
     bio=models.TextField()
@@ -63,7 +68,7 @@ class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     comment_date = models.DateTimeField(auto_now_add=True)
-    content=models.TextField()
+    content=models.TextField(null=True)
     
     def __str__(self):
         return self.image
