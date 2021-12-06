@@ -6,9 +6,9 @@ from django.urls import path
 urlpatterns=[
   path('search/', views.search_results, name='search_results'),
   path('', views.home, name='home'),
-  path('accounts/profile/', views.profile, name='profile'),
-  path('addimage/', views.add_image, name='addimage'),
-  path('updateprofile/', views.update_profile, name='updateprofile'),
+  path('user/', views.profile, name='profile'),
+  path('user/addimage', views.add_image, name='addimage'),
+  path('user/updateprofile', views.update_profile, name='updateprofile'),
   
 ]
 if settings.DEBUG:

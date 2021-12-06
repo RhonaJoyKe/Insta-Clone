@@ -1,0 +1,9 @@
+.user-avatar{
+    border-radius: 50%;
+}
+.headings{
+    color:aquamarine
+}
+.prof-name{
+    display: flex;
+}

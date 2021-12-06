@@ -11,16 +11,18 @@
                 <!-- Gallery Photo item start -->
                 <div class="col-xl-3 col-lg-4 col-md-12 mb-4">
                   <div class="bg-white rounded shadow-sm">
-                    <img src-="{{ image.user.profile.profile_photo.url}}">
-                    <p>{{image.user}}</p>
+                    
+                    <p class="prof-name">
+                      <img src="{{image.user.profile.profile_photo.url}}" height="50px" width="30%"class="user-avatar">
+                      {{image.user}}</p>
                       <img src="{{ image.image.url }}" alt=""
-                      class="img-fluid card-img-top">
+                      class="img-fluid card-img-top" height="300px" width="100%">
                     <div class="p-4">
-                      <h5 class="headings text-center"> {{ image.image_name }}</h5>
+                      <h5 class="headings text-center"> {{ image.name }}</h5>
                       <div class="d-flex justify-content-between">
                         <div>
                           <div class="text-muted">
-                            <span class="text-white text-capitalize">{{ image.image_caption }}</span>
+                            <span class="text-white text-capitalize">{{ image.caption }}</span>
                           </div>
                         </div>
                         <div>
@@ -30,7 +32,7 @@
                         </div>
                         <div>
 {% comment %}
-                        <a type="button" href="{% url 'like.image' image.id %}" class="btn btn-primary"><i class="bi bi-heart-fill"></i>  {{image.like_count }} Likes</a> {% endcomment %}
+                         {% endcomment %}
                       </div>
                     </div>
                     </div>

@@ -3,33 +3,28 @@
 {{block.super}}
 <div class="container-fluid" id="profile">
   
-    
-      <div class="row">
+    <div class="row">
          
          
-          <div class="col-xl-3 col-lg-4 col-md-12 mb-4">
-            <div class="bg-white rounded shadow-sm">
-              {% if profile.profile_photo%}
-              <img src="{{profile.profile_photo.url}}" alt="">
+          <div class="col-md-4">
+            
+              
+              <img src="{{profile.profile_photo.url}}" alt=""height="300px" width="100%">
 
-              {%else%}
-              <img src="https://i.pinimg.com/474x/82/ab/35/82ab3533ee71daf256f23c1ccf20ad6f--avatar-maker.jpg" alt=""
-                class="img-fluid card-img-top">
-              {%endif%}
-         </div>
-         
+             
+              
+      
+              <a type="button" href="/user/updateprofile" class="btn btn-primary"><i class="bi bi-heart-fill"></i>Update Profile</a>
+      </div>
+      <div class="col-md-4">
+        <a type="button" href="/user/addimage" class="btn btn-primary"><i class="bi bi-heart-fill"></i>  Add image</a>
+      </div>
+      {%for post in user.posts%}
+      <div class="col-md-4">
+        <p><b>POSTS</b></p>
+        <img src="{{post.image.url}}" alt="">
       </div>
       </div>
-      <div class="row">
-        <button type="button" class="btn btn-dark">Add Image</button>
-      </div>
       
-        
-      
-      
-
-  
-    
-  
 </div>
 {%endblock%}

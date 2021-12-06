@@ -50,10 +50,13 @@ def add_image(request):
     return render(request,'add_image.html',{'form':form})
 def update_profile(request):
   	#Get the profile
-    profile = Profile.objects.get(user=request.user)
+    current_user=request.user
+    profile = Profile.objects.filter(id=current_user.id).first()
     if request.method == 'POST':
         profileform = UpdateProfileForm(request.POST,request.FILES,instance=profile)
         if  profileform.is_valid:
+            profileform.save(commit=False)
+            profileform.user=request.user
             profileform.save()
             return redirect('profile')
     else:
