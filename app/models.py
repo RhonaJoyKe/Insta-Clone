@@ -63,7 +63,7 @@ class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     comment_date = models.DateTimeField(auto_now_add=True)
-    content=models.CharField(max_length=20,null=True)
+    content=models.TextField()
     
     def __str__(self):
         return self.image
