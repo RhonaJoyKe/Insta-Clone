@@ -7,9 +7,10 @@
          
             <!-- display default password and username -->
             <div class="row">
+                <div class="col-md-4"></div>
                 {% for image in images %}
                 <!-- Gallery Photo item start -->
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="card mb-4">
                       <div class="d-flex justify-content-start m-2">
                           <div>
@@ -30,7 +31,9 @@
                                   <div>
                                       <p>
                                           <a href="post/{{image.id}}/like"> <i class="far fa-heart"></i></a>
+
                                       </p>
+                                      <p>{{image.like_count.count}}</p>
                                   </div>
                                   <div>
                                       <p>
@@ -48,6 +51,7 @@
           </div>
           {%endfor%}
         </div>
+        <div class="col-md-4"></div>
         </div>
 {%endblock%}
 

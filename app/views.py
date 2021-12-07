@@ -10,9 +10,6 @@ from django.contrib import messages
 # Create your views here.
 def home(request):
     images=Image.objects.all()
-    form=CommentForm(request.POST)
-    if form.is_valid():
-        image=self.get_object()
     
    
     return render(request,'index.html',{'images':images})
@@ -86,22 +83,13 @@ def update_profile(request):
         form=UpdateProfileForm()
     return render(request,'profile/update_profile.html',{'form':form})
 def like_image(request, image_id):
-    like_user=Likes.objects.filter(id=image_id).first()
-    if Likes.objects.filter(id=image_id,user_id=request.user.id).exists():
-        like_user.delete()
-        image=Image.objects.get(image_id=id)
-        if image.like_count==0:
-            image.like_count==0
-            image.save()
-        else:
-            image.like_count-=1
-            image.save()
-        return redirect('home')
+    image = get_object_or_404(Image,id = image_id)
+    like = Likes.objects.filter(image = image ,user = request.user).first()
+    if like is None:
+        like = Likes()
+        like.image = image
+        like.user = request.user
+        like.save()
     else:
-        user_like=Likes.objects.filter(id=image_id,user_id=request.user.id)
-        user_like.save()
-        image=Image.objects.get(image_id=id)
-        image.like_count=image.like_count+1
-        image.save()
-        return redirect('home')
-
+        like.delete()
+    return redirect('home')

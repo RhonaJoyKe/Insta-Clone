@@ -26,10 +26,14 @@ class Image(models.Model):
     # delete image
     def delete_image(self):
         self.delete()
-
+    # get all images
+    @classmethod
+    def get_all_images(cls):
+        images = Image.objects.all()
+        return images
     # update image caption
     def update_caption(self, new_caption):
-        self.image_caption = new_caption
+        self.caption = new_caption
         self.save()
     # search images by name
     @classmethod
@@ -99,7 +103,10 @@ class Likes(models.Model):
      # delete like from database
     def delete_likes(self):
         self.delete()
-
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'image'], name="unique_like"),
+        ]
 class AddImageForm(ModelForm):
     class Meta:
         model = Image
