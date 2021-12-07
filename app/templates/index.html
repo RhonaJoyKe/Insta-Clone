@@ -9,7 +9,7 @@
             <div class="row">
                 {% for image in images %}
                 <!-- Gallery Photo item start -->
-                <div class="col-sm-12 col-md-12 col-lg-3">
+                <div class="col-md-4">
                   <div class="card mb-4">
                       <div class="d-flex justify-content-start m-2">
                           <div>
@@ -29,7 +29,7 @@
                               <div class="d-flex justify-content-start ">
                                   <div>
                                       <p>
-                                          <a href=""> <i class="far fa-heart"></i></a>
+                                          <a href="post/{{image.id}}/like"> <i class="far fa-heart"></i></a>
                                       </p>
                                   </div>
                                   <div>
