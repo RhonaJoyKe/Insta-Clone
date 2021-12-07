@@ -85,3 +85,23 @@ def update_profile(request):
     else:
         form=UpdateProfileForm()
     return render(request,'profile/update_profile.html',{'form':form})
+def like_image(request, image_id):
+    like_user=Likes.objects.filter(id=image_id).first()
+    if Likes.objects.filter(id=image_id,user_id=request.user.id).exists():
+        like_user.delete()
+        image=Image.objects.get(image_id=id)
+        if image.like_count==0:
+            image.like_count==0
+            image.save()
+        else:
+            image.like_count-=1
+            image.save()
+        return redirect('home')
+    else:
+        user_like=Likes.objects.filter(id=image_id,user_id=request.user.id)
+        user_like.save()
+        image=Image.objects.get(image_id=id)
+        image.like_count=image.like_count+1
+        image.save()
+        return redirect('home')
+

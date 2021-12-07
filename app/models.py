@@ -84,7 +84,7 @@ class Comments(models.Model):
     def delete_comments(self):
         self.delete()
 class Likes(models.Model):
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image,related_name='like_count', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.image
