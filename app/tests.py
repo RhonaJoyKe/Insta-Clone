@@ -31,6 +31,13 @@ class ImageTestCase(TestCase):
         self.assertTrue(len(users) > 0)
         self.assertTrue(len(comments) > 0)
         self.assertTrue(len(likes) > 0)
+    def test_update(self):
+        self.user.save()
+        self.image.save_image()
+        self.image.update_caption('so pretty')
+        caption_update=self.image.caption
+        self.assertEqual(caption_update,'so pretty')
+
     def test_delete(self):
         self.user.save()
         self.image.save_image()
@@ -48,3 +55,4 @@ class ImageTestCase(TestCase):
         self.assertTrue(len(users) == 0)
         self.assertTrue(len(comments) == 0)
         self.assertTrue(len(likes) == 0)
+    
