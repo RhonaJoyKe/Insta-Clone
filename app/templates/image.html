@@ -14,7 +14,8 @@
                 <p>{{ image.caption}}</p></h5>
                 {% if comments%}
                 {% for comment in comments %}
-                    <h6> {%if image.author.profile.profile_pic %}<img src="{{comment.user.profile.profile_photo.url}}" alt="" class="icon">{% endif %} <b>{{comment.author}}</b> {{comment.content}}</h6>
+                    <h6> {%if image.author.profile.profile_pic %}
+                        <img src="{{comment.user.profile.profile_photo.url}}" alt="" class="icon">{% endif %} <b>{{comment.author}}</b> {{comment.content}}</h6>
                 {% endfor %}
                 {% else%}
                 <p>No comments yet</p>

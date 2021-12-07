@@ -1,53 +1,66 @@
-<nav class="navbar navbar-expand-lg  bg-light navbar-light">
-    <a class="navbar-brand" href="/">Instagram</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-        <div class="col-sm-4 col-md-4 ">
-          <form class="navbar-form" role="search" method="" action="" >
-            {% csrf_token %}
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search  By Category" name="name">
-              <div class="input-group-btn">
-                <button class="btn btn-primary" type="submit">Search</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <!-- search form end -->
-       
-          {% if user.is_authenticated %}
-          <ul>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i>
-                        <span class="caret"></span>
-                    </a>
-              <ul class="dropdown-menu" role="menu">
-                <li>
-                  <a href="">Home</a>
-                </li>
-                <li>
-                  <a href="/accounts/password/change">Change Password</a>
-                </li>
-                <li>
-                  <a href="/user">Profile</a>
-                </li>
-                <li>
-                  <a href="/logout">Logout</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          {% else %}
-          <li>
-            <a class='btn btn-default' href="/accounts/login">Login</a>
-          </li>
+<nav class="navbar navbar-expand-md navbar-ligh ">
+  <div class="container-fluid">
+  <div style="margin-left: 5%;">
+  <a href="{% url 'home' %}" class="navbar-brand mr-3">
+    <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="">
+  </a>
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: 65%;">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-nav" style="margin-left: 30%;">
+    <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search_results' %}" >
+        <input autocomplete="off"class="form-control d-none d-md-block" placeholder="Search" name="search_user" style="border: 1px solid #dbdbdb; background-color: #fafafa; height: 27.5px;width: 12.5rem ;border-radius: 3.5px;padding-left: 25px;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">
+    </form>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarToggle" style="margin-left: 30%;">
+   
+    <div class="navbar-nav mb-3 " id="instaicons">
+      <a href="/">
+        <img src="https://img.icons8.com/material-sharp/28/000000/home.png"class="responsive"height="20px" width="50%">
+      </a>
   
-          {% endif %}
-       
+        <img src="https://img.icons8.com/ios/30/000000/facebook-messenger--v1.png"class="responsive"height="20px" width="50%">
+        
+      
+
+      
+        <img src="https://img.icons8.com/ios/30/000000/plus-2-math.png"height="20px"class="responsive" width="50%">
+{% if user.is_authenticated %}
+  <ul>
+  <li class="dropdown">
+  <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i>
+  <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+  <li>
+  <a href="">Home</a>
+  </li>
+  <li>
+  <a href="/accounts/password/change">Change Password</a>
+  </li>
+  <li>
+  <a href="/user">Profile</a>
+  </li>
+  <li>
+  <a href="/logout">Logout</a>
+  </li>
+  </ul>
+  </li>
+  </ul>
+{% else %}
+  <li>
+  <a class='btn btn-default' href="/accounts/login">Login</a>
+  </li>
+{% endif %}
+      
+        
+        
+   
     </div>
-    
+  </div>
+</div>
 </nav>
