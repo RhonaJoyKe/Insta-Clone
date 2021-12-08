@@ -1,4 +1,6 @@
-
+body{
+    background-color: #8134AF;
+}
 .flex{
     display: flex;
 }
@@ -12,7 +14,7 @@
 }
 #profile{
     display: flex;
-    ;
+
 }
 .navbar{
     background-color: #DD2A7B;
@@ -24,4 +26,6 @@
 .pffollowes{
     display:flex
 }
-  
+.fa-user{
+    font-size: 40px;
+}

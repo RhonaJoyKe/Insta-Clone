@@ -34,23 +34,21 @@ def single_image(request,image_id):
     
 
 
+@login_required
 def search_results(request):
-
-    if 'name' in request.GET and request.GET["name"]:
-        search_term = request.GET.get("name")
-        searched_images = Image.search_image(search_term)
-        print(searched_images)
-        message = f"{search_term}"
-
-        return render(request, 'search.html',{"message":message,"images": searched_images})
-
-    else:
-        message = "You haven't searched for any term"
-        return render(request, 'search.html',{"message":message})
+  if 'name' in request.GET and request.GET["name"]:
+    name = request.GET.get('name')
+    users = Profile.search_profiles(name)
+    images = Image.search_images(name)
+    print(users)
+    return render(request, 'search.html', {"users": users, "images": images})
+  else:
+    return render(request, 'search.html')
 
 @login_required(login_url='/accounts/login/')
-def profile(request):
-    current_user = request.user
+def profile(request,user_id):
+    current_user=get_object_or_404(User,id=user_id)
+    # current_user = request.user
     images = Image.objects.filter(user=current_user)
     profile = get_object_or_404(Profile,id = current_user.id)
     return render(request, 'profile/profile.html', {"images": images, "profile": profile})

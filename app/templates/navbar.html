@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-ligh ">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-md navbar ">
+  <div class="container">
   <div style="margin-left: 5%;">
   <a href="{% url 'home' %}" class="navbar-brand mr-3">
     <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="">
@@ -11,28 +11,26 @@
   </button>
 
   <div class="navbar-nav" style="margin-left: 30%;">
-    <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search_results' %}" >
-        <input autocomplete="off"class="form-control d-none d-md-block" placeholder="Search" name="search_user" style="border: 1px solid #dbdbdb; background-color: #fafafa; height: 27.5px;width: 12.5rem ;border-radius: 3.5px;padding-left: 25px;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;">
-    </form>
+    <form class="navbar-form" role="search" method="" action="{% url 'search_results' %}" style="margin-right:150px;" >
+      {% csrf_token %}
+      <div class="input-group">
+      <input type="text" class="form-control" placeholder="SearchByProfile" name="name">
+      <div class="input-group-btn">
+      <button class="btn btn-dark" style="margin-left: 5px;" type="submit">Search</button>
+      </div>
+      </div>
+      </form>
+    
   </div>
 
-  <div class="collapse navbar-collapse" id="navbarToggle" style="margin-left: 30%;">
+  <div class="collapse navbar-collapse" id="navbarToggle" style="margin-left: 2px;">
    
-    <div class="navbar-nav mb-3 " id="instaicons">
-      <a href="/">
-        <img src="https://img.icons8.com/material-sharp/28/000000/home.png"class="responsive"height="20px" width="50%">
-      </a>
-  
-        <img src="https://img.icons8.com/ios/30/000000/facebook-messenger--v1.png"class="responsive"height="20px" width="50%">
-        
-      
-
-      
-        <img src="https://img.icons8.com/ios/30/000000/plus-2-math.png"height="20px"class="responsive" width="50%">
+    <div class="navbar-nav mb-3 ">
+     
 {% if user.is_authenticated %}
   <ul>
-  <li class="dropdown">
-  <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i>
+  <li class="dropdown"style="list-style: none";>
+  <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"aria-hidden="true"></i>
   <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -43,7 +41,7 @@
   <a href="/accounts/password/change">Change Password</a>
   </li>
   <li>
-  <a href="/user">Profile</a>
+  <a href="/user/{{request.user.id}}">Profile</a>
   </li>
   <li>
   <a href="/logout">Logout</a>

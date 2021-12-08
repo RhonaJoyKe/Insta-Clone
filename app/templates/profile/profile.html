@@ -7,35 +7,39 @@
       <div class="col-md-2"></div>
       <div class="col-md-1"></div>
          <div class="col-md-9">
-            <img src="{{profile.profile_photo.url}}" alt=""height="300px"  class="responsive"width="100%" style="border-radius: 50%;">
+            <img src="{{profile.profile_photo.url}}" alt=""height="300px"  class="img-responsive"width="100%" style="border-radius: 50%;">
             <p><b>{{profile.first_name}}   {{profile.last_name}}</b></p>
              <p>{{profile.bio}}</p>
               <div class="pffollowes">
                 <div class="posts">
-                   <p><b>40</b></p>
-                   <p>Posts</p>
+                   <p><b>40 <br>Posts</b></p>
+                   
                 </div>
                 <div class="followers">
-                  <p><b>40</b></p>
-                  <p>Followers</p>
-                </div>
-                <div class="following">
-                  <p><b>40</b></p>
-                  <p>Following</p>
-                </div>
-
+                  <p><b>40 <br>Followers</b></p>
+                  
+               </div>
+               <div class="Following">
+                <p><b>40 <br>Following</b></p>
+                
+               </div>
               </div>
-            <a type="button" href="/user/updateprofile" class="btn btn-primary" style="margin-top: 10px;">Update Profile</a>
+            <button style="margin-top: 10px; background-color:#515BD4"> FOLLOW</button>
+            {% if profile.user.is_authenticated %}
+            <a type="button" href="/user/updateprofile" class="btn btn-primary" style="margin-top: 10px;">Update Profile</a><br><br>
+            <a type="button" href="/user/addimage" class="btn btn-primary"><i class="bi bi-heart-fill"></i>  Add image</a>
+            {%endif%}
+
       </div>
      
-        <!-- <a type="button" href="/user/addimage" class="btn btn-primary"><i class="bi bi-heart-fill"></i>  Add image</a> -->
+        
       
     </div>
         <div class="row" id="posts">
           <p><b> YOUR POSTS</b></p>
           {%for post in user.posts.all%}
           <div class="col-md-6">
-            <img src="{{post.image.url}}" alt="" width="100%" height="200px">
+            <img src="{{post.image.url}}" alt="" width="100%" height="200px"class="img-responsive">
           </div>
           {%endfor%}
           <div class="col-md-6"></div>

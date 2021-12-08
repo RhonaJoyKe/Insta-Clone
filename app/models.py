@@ -1,8 +1,9 @@
+from django import forms
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-from django.forms import ModelForm
+from django.forms import ModelForm, widgets
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
@@ -37,8 +38,8 @@ class Image(models.Model):
         self.save()
     # search images by name
     @classmethod
-    def search_image(cls, search_term):
-        images = cls.objects.filter(name__icontains=search_term)
+    def search_images(cls, search_term):
+        images = cls.objects.filter(name__icontains=search_term).all()
         return images
 class Profile(models.Model):
     profile_photo=models.ImageField(upload_to = 'pictures/')
@@ -68,6 +69,10 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+    @classmethod
+    def search_profiles(cls, search_term):
+        profiles = cls.objects.filter(user__username__icontains=search_term).all()
+        return profiles
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
@@ -119,6 +124,9 @@ class CommentForm(ModelForm):
     class Meta:
         model=Comments
         fields=['content']
+        widgets= {
+            'content':forms.Textarea(attrs={'rows':2,})
+        }
 
 
 
