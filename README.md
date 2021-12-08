@@ -1,4 +1,4 @@
-# RJ  Gallery
+# Insta Clone
 
 #### Created By Rhonajoy
 
