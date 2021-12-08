@@ -4,7 +4,7 @@
 
 ## Description
 
-A django based gallery where people are able to view different images from different categories and taken in different locations. A user is also able to search an image based on its name.
+A django based application that is a replication of the instagram app. Users are able to log in, register if they have no accounts.Like pictures and comment on pictures as well as search users based on their profile.Users are also able to update their profiles and add posts.
 ## Setup Requirements
 
 - Git
@@ -77,7 +77,7 @@ The following languages have been used on this project:
 
 ## Setup/Installation Requirements
 
-- Live link to view the project <a target="_blank" href="">View Gallery</a>
+- Live link to view the project <a target="_blank" href="">View Insta App</a>
 
 
 
