@@ -7,9 +7,17 @@
       <div class="col-md-2"></div>
       <div class="col-md-1"></div>
          <div class="col-md-9">
+          {% if profile.profile_photo%}
             <img src="{{profile.profile_photo.url}}" alt=""height="300px"  class="img-responsive"width="100%" style="border-radius: 50%;">
+            {%else%}
+          <img src="https://i.pinimg.com/474x/82/ab/35/82ab3533ee71daf256f23c1ccf20ad6f--avatar-maker.jpg" alt=""height="300px"  class="img-responsive"width="100%" style="border-radius: 50%;">
+            {%endif%}
             <p><b>{{profile.first_name}}   {{profile.last_name}}</b></p>
+            {% if profile.bio%}
              <p>{{profile.bio}}</p>
+             {%else%}
+             <p>No bio</p>
+             {%endif%}
               <div class="pffollowes">
                 <div class="posts">
                    <p><b>40 <br>Posts</b></p>
@@ -25,11 +33,12 @@
                </div>
               </div>
             <button style="margin-top: 10px; background-color:#515BD4"> FOLLOW</button>
-            {% if profile.user.is_authenticated %}
+          
             <a type="button" href="/user/updateprofile" class="btn btn-primary" style="margin-top: 10px;">Update Profile</a><br><br>
             <a type="button" href="/user/addimage" class="btn btn-primary"><i class="bi bi-heart-fill"></i>  Add image</a>
-            {%endif%}
-
+        
+        
+        
       </div>
      
         
